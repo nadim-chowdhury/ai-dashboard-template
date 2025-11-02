@@ -1,65 +1,122 @@
-import Image from "next/image";
+"use client"
+
+import { DashboardLayout } from "@/components/dashboard/dashboard-layout"
+import { StatCard } from "@/components/dashboard/stat-card"
+import { RevenueChart } from "@/components/dashboard/revenue-chart"
+import { AIAssistant } from "@/components/dashboard/ai-assistant"
+import { ActivityFeed } from "@/components/dashboard/activity-feed"
+import { AnalyticsOverview } from "@/components/dashboard/analytics-overview"
+import { CommandPalette } from "@/components/dashboard/command-palette"
+import {
+  TrendingUp,
+  Users,
+  ShoppingCart,
+  DollarSign,
+  ArrowUpRight,
+  ArrowDownRight,
+} from "lucide-react"
+import { motion } from "framer-motion"
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <DashboardLayout>
+      <CommandPalette />
+
+      {/* Welcome Section */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="space-y-2"
+      >
+        <h1 className="text-3xl font-bold tracking-tight">Welcome back, John!</h1>
+        <p className="text-muted-foreground">
+          Here's what's happening with your business today.
+        </p>
+      </motion.div>
+
+      {/* Stats Grid */}
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <StatCard
+          title="Total Revenue"
+          value="$92,548"
+          change="+12.5%"
+          changeType="positive"
+          icon={DollarSign}
+          gradient="from-violet-500 to-purple-500"
+          description="vs. last month"
+          trend={
+            <div className="flex items-center gap-2 text-xs">
+              <ArrowUpRight className="w-3 h-3 text-green-500" />
+              <span className="text-green-500 font-medium">+$10,245</span>
+              <span className="text-muted-foreground">from last period</span>
+            </div>
+          }
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+        <StatCard
+          title="Active Users"
+          value="2,845"
+          change="+8.2%"
+          changeType="positive"
+          icon={Users}
+          gradient="from-blue-500 to-cyan-500"
+          description="vs. last month"
+          trend={
+            <div className="flex items-center gap-2 text-xs">
+              <ArrowUpRight className="w-3 h-3 text-green-500" />
+              <span className="text-green-500 font-medium">+215</span>
+              <span className="text-muted-foreground">new this week</span>
+            </div>
+          }
+        />
+        <StatCard
+          title="Total Sales"
+          value="1,234"
+          change="-3.1%"
+          changeType="negative"
+          icon={ShoppingCart}
+          gradient="from-green-500 to-emerald-500"
+          description="vs. last month"
+          trend={
+            <div className="flex items-center gap-2 text-xs">
+              <ArrowDownRight className="w-3 h-3 text-red-500" />
+              <span className="text-red-500 font-medium">-39</span>
+              <span className="text-muted-foreground">from last period</span>
+            </div>
+          }
+        />
+        <StatCard
+          title="Growth Rate"
+          value="23.8%"
+          change="+4.3%"
+          changeType="positive"
+          icon={TrendingUp}
+          gradient="from-orange-500 to-amber-500"
+          description="vs. last month"
+          trend={
+            <div className="flex items-center gap-2 text-xs">
+              <ArrowUpRight className="w-3 h-3 text-green-500" />
+              <span className="text-green-500 font-medium">Excellent</span>
+              <span className="text-muted-foreground">performance</span>
+            </div>
+          }
+        />
+      </div>
+
+      {/* Charts Section */}
+      <div className="grid gap-6 lg:grid-cols-3">
+        <div className="lg:col-span-2">
+          <RevenueChart />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div>
+          <AnalyticsOverview />
         </div>
-      </main>
-    </div>
-  );
+      </div>
+
+      {/* AI and Activity Section */}
+      <div className="grid gap-6 lg:grid-cols-2">
+        <AIAssistant />
+        <ActivityFeed />
+      </div>
+    </DashboardLayout>
+  )
 }
