@@ -1,15 +1,21 @@
-"use client"
+"use client";
 
-import { DashboardLayout } from "@/components/dashboard/dashboard-layout"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Switch } from "@/components/ui/switch"
-import { Separator } from "@/components/ui/separator"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { motion } from "framer-motion"
+import { DashboardLayout } from "@/components/dashboard/dashboard-layout";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
+import { Separator } from "@/components/ui/separator";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { motion } from "framer-motion";
 import {
   Settings as SettingsIcon,
   User,
@@ -18,7 +24,7 @@ import {
   Palette,
   Save,
   Upload,
-} from "lucide-react"
+} from "lucide-react";
 
 export default function SettingsPage() {
   return (
@@ -103,7 +109,7 @@ export default function SettingsPage() {
                   <div className="grid gap-4 md:grid-cols-2">
                     <div className="space-y-2">
                       <Label htmlFor="firstName">First Name</Label>
-                      <Input id="firstName" defaultValue="John" />
+                      <Input id="firstName" defaultValue="Nadim" />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="lastName">Last Name</Label>
@@ -113,7 +119,11 @@ export default function SettingsPage() {
 
                   <div className="space-y-2">
                     <Label htmlFor="email">Email</Label>
-                    <Input id="email" type="email" defaultValue="john.doe@example.com" />
+                    <Input
+                      id="email"
+                      type="email"
+                      defaultValue="nadim-chowdhury@outlook.com"
+                    />
                   </div>
 
                   <div className="space-y-2">
@@ -146,7 +156,8 @@ export default function SettingsPage() {
                   {[
                     {
                       title: "Email Notifications",
-                      description: "Receive email updates about your account activity",
+                      description:
+                        "Receive email updates about your account activity",
                     },
                     {
                       title: "Push Notifications",
@@ -154,7 +165,8 @@ export default function SettingsPage() {
                     },
                     {
                       title: "Marketing Emails",
-                      description: "Receive emails about new features and updates",
+                      description:
+                        "Receive emails about new features and updates",
                     },
                     {
                       title: "Security Alerts",
@@ -204,7 +216,9 @@ export default function SettingsPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="confirmPassword">Confirm New Password</Label>
+                    <Label htmlFor="confirmPassword">
+                      Confirm New Password
+                    </Label>
                     <Input id="confirmPassword" type="password" />
                   </div>
 
@@ -212,7 +226,9 @@ export default function SettingsPage() {
 
                   <div className="flex items-center justify-between p-4 rounded-lg border border-border/40 bg-accent/20">
                     <div className="space-y-0.5">
-                      <Label className="text-base">Two-Factor Authentication</Label>
+                      <Label className="text-base">
+                        Two-Factor Authentication
+                      </Label>
                       <p className="text-sm text-muted-foreground">
                         Add an extra layer of security to your account
                       </p>
@@ -277,5 +293,5 @@ export default function SettingsPage() {
         </motion.div>
       </div>
     </DashboardLayout>
-  )
+  );
 }

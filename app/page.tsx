@@ -29,7 +29,7 @@ export default function Home() {
         className="space-y-2"
       >
         <h1 className="text-3xl font-bold tracking-tight">
-          Welcome back, John!
+          Welcome back, Nadim!
         </h1>
         <p className="text-muted-foreground">
           Here&apos;s what&apos;s happening with your business today.

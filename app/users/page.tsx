@@ -46,7 +46,7 @@ import { StatCard } from "@/components/dashboard/stat-card";
 const users = [
   {
     id: 1,
-    name: "Sarah Johnson",
+    name: "Sarah Nadimson",
     email: "sarah.j@example.com",
     role: "Admin",
     status: "Active",

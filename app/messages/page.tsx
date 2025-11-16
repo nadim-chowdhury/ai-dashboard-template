@@ -22,7 +22,7 @@ import {
 const conversations = [
   {
     id: 1,
-    name: "Sarah Johnson",
+    name: "Sarah Nadimson",
     avatar: "/avatar-1.jpg",
     lastMessage: "Thanks for the update!",
     time: "2m ago",
@@ -70,7 +70,7 @@ const conversations = [
 const messages = [
   {
     id: 1,
-    sender: "Sarah Johnson",
+    sender: "Sarah Nadimson",
     content: "Hey! How are you doing?",
     time: "10:30 AM",
     isMine: false,
@@ -84,7 +84,7 @@ const messages = [
   },
   {
     id: 3,
-    sender: "Sarah Johnson",
+    sender: "Sarah Nadimson",
     content:
       "I'm good! I wanted to follow up on the project we discussed yesterday.",
     time: "10:33 AM",
@@ -100,7 +100,7 @@ const messages = [
   },
   {
     id: 5,
-    sender: "Sarah Johnson",
+    sender: "Sarah Nadimson",
     content: "Thanks for the update!",
     time: "10:37 AM",
     isMine: false,

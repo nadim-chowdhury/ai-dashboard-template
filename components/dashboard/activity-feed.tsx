@@ -24,7 +24,7 @@ import { cn } from "@/lib/utils";
 const activities = [
   {
     id: 1,
-    user: "Sarah Johnson",
+    user: "Sarah Nadimson",
     action: "made a purchase",
     target: "Premium Plan",
     time: "2 minutes ago",
