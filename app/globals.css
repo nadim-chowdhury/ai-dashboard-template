@@ -132,7 +132,7 @@
   }
 
   .gradient-border {
-    @apply relative before:absolute before:inset-0 before:rounded-xl before:p-[1px] before:bg-gradient-to-r before:from-violet-500 before:to-purple-500 before:-z-10;
+    @apply relative before:absolute before:inset-0 before:rounded-xl before:p-px before:bg-linear-to-r before:from-violet-500 before:to-purple-500 before:-z-10;
   }
 
   /* Animated gradients */
@@ -147,7 +147,7 @@
   }
 
   .shimmer::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     transform: translateX(-100%);
@@ -194,7 +194,8 @@
 
 /* Keyframes - must be outside @layer */
 @keyframes gradient {
-  0%, 100% {
+  0%,
+  100% {
     background-position: 0% 50%;
   }
   50% {
@@ -206,4 +207,8 @@
   100% {
     transform: translateX(100%);
   }
+}
+
+button {
+  cursor: pointer;
 }

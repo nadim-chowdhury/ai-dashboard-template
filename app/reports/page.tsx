@@ -1,10 +1,16 @@
-"use client"
+"use client";
 
-import { DashboardLayout } from "@/components/dashboard/dashboard-layout"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { motion } from "framer-motion"
+import { DashboardLayout } from "@/components/dashboard/dashboard-layout";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { motion } from "framer-motion";
 import {
   FileText,
   Download,
@@ -18,7 +24,8 @@ import {
   FileSpreadsheet,
   FileBarChart,
   File,
-} from "lucide-react"
+} from "lucide-react";
+import { StatCard } from "@/components/dashboard/stat-card";
 
 const reports = [
   {
@@ -87,34 +94,34 @@ const reports = [
     gradient: "from-indigo-500 to-blue-500",
     status: "Generating",
   },
-]
+];
 
-const quickStats = [
-  {
-    label: "Total Reports",
-    value: "47",
-    icon: FileText,
-    gradient: "from-violet-500 to-purple-500",
-  },
-  {
-    label: "Generated This Month",
-    value: "12",
-    icon: Calendar,
-    gradient: "from-blue-500 to-cyan-500",
-  },
-  {
-    label: "Downloads",
-    value: "234",
-    icon: Download,
-    gradient: "from-green-500 to-emerald-500",
-  },
-  {
-    label: "Scheduled",
-    value: "8",
-    icon: Clock,
-    gradient: "from-orange-500 to-amber-500",
-  },
-]
+// const quickStats = [
+//   {
+//     label: "Total Reports",
+//     value: "47",
+//     icon: FileText,
+//     gradient: "from-violet-500 to-purple-500",
+//   },
+//   {
+//     label: "Generated This Month",
+//     value: "12",
+//     icon: Calendar,
+//     gradient: "from-blue-500 to-cyan-500",
+//   },
+//   {
+//     label: "Downloads",
+//     value: "234",
+//     icon: Download,
+//     gradient: "from-green-500 to-emerald-500",
+//   },
+//   {
+//     label: "Scheduled",
+//     value: "8",
+//     icon: Clock,
+//     gradient: "from-orange-500 to-amber-500",
+//   },
+// ];
 
 export default function ReportsPage() {
   return (
@@ -127,12 +134,12 @@ export default function ReportsPage() {
           className="flex items-center justify-between"
         >
           <div className="flex items-center gap-3">
-            <div className="relative">
+            {/* <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-amber-500 blur-xl opacity-50" />
               <div className="relative w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center">
                 <FileText className="w-6 h-6 text-white" />
               </div>
-            </div>
+            </div> */}
             <div>
               <h1 className="text-3xl font-bold tracking-tight">Reports</h1>
               <p className="text-muted-foreground">
@@ -140,16 +147,16 @@ export default function ReportsPage() {
               </p>
             </div>
           </div>
-          <Button className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600">
+          <Button className="bg-linear-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600">
             <FileText className="w-4 h-4 mr-2" />
             Generate Report
           </Button>
         </motion.div>
 
         {/* Quick Stats */}
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {/* <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {quickStats.map((stat, index) => {
-            const Icon = stat.icon
+            const Icon = stat.icon;
             return (
               <motion.div
                 key={stat.label}
@@ -161,7 +168,9 @@ export default function ReportsPage() {
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between">
                       <div className="space-y-1">
-                        <p className="text-sm text-muted-foreground">{stat.label}</p>
+                        <p className="text-sm text-muted-foreground">
+                          {stat.label}
+                        </p>
                         <p className="text-2xl font-bold">{stat.value}</p>
                       </div>
                       <div
@@ -173,8 +182,44 @@ export default function ReportsPage() {
                   </CardContent>
                 </Card>
               </motion.div>
-            )
+            );
           })}
+        </div> */}
+
+        {/* Quick Stats */}
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <StatCard
+            title="Total Reports"
+            value="47"
+            change="All time"
+            changeType="neutral"
+            icon={FileText}
+            gradient="from-violet-500 to-purple-500"
+          />
+          <StatCard
+            title="Generated This Month"
+            value="12"
+            change="+3 from last month"
+            changeType="positive"
+            icon={Calendar}
+            gradient="from-blue-500 to-cyan-500"
+          />
+          <StatCard
+            title="Downloads"
+            value="234"
+            change="+18% this month"
+            changeType="positive"
+            icon={Download}
+            gradient="from-green-500 to-emerald-500"
+          />
+          <StatCard
+            title="Scheduled"
+            value="8"
+            change="Active schedules"
+            changeType="neutral"
+            icon={Clock}
+            gradient="from-orange-500 to-amber-500"
+          />
         </div>
 
         {/* Reports List */}
@@ -193,7 +238,7 @@ export default function ReportsPage() {
 
           <div className="grid gap-4 lg:grid-cols-2">
             {reports.map((report, index) => {
-              const Icon = report.icon
+              const Icon = report.icon;
               return (
                 <motion.div
                   key={report.id}
@@ -206,17 +251,23 @@ export default function ReportsPage() {
                       <div className="flex items-start justify-between">
                         <div className="flex items-start gap-3 flex-1">
                           <div
-                            className={`w-12 h-12 rounded-lg bg-gradient-to-br ${report.gradient} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform`}
+                            className={`w-12 h-12 rounded-lg bg-linear-to-br ${report.gradient} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform`}
                           >
                             <Icon className="w-6 h-6 text-white" />
                           </div>
                           <div className="space-y-1 flex-1">
-                            <CardTitle className="text-base">{report.title}</CardTitle>
-                            <CardDescription>{report.description}</CardDescription>
+                            <CardTitle className="text-base">
+                              {report.title}
+                            </CardTitle>
+                            <CardDescription>
+                              {report.description}
+                            </CardDescription>
                           </div>
                         </div>
                         <Badge
-                          variant={report.status === "Ready" ? "default" : "secondary"}
+                          variant={
+                            report.status === "Ready" ? "default" : "secondary"
+                          }
                           className={
                             report.status === "Ready"
                               ? "bg-green-500/10 text-green-500 border-green-500/20"
@@ -254,7 +305,7 @@ export default function ReportsPage() {
                           <Button
                             size="sm"
                             disabled={report.status !== "Ready"}
-                            className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600"
+                            className="bg-linear-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600"
                           >
                             <Download className="w-4 h-4 mr-1" />
                             Download
@@ -264,7 +315,7 @@ export default function ReportsPage() {
                     </CardContent>
                   </Card>
                 </motion.div>
-              )
+              );
             })}
           </div>
         </div>
@@ -285,21 +336,29 @@ export default function ReportsPage() {
             <CardContent>
               <div className="space-y-3">
                 {[
-                  { name: "Weekly Performance Summary", schedule: "Every Monday 9:00 AM" },
-                  { name: "Monthly Financial Report", schedule: "1st of every month" },
+                  {
+                    name: "Weekly Performance Summary",
+                    schedule: "Every Monday 9:00 AM",
+                  },
+                  {
+                    name: "Monthly Financial Report",
+                    schedule: "1st of every month",
+                  },
                   { name: "Quarterly Review", schedule: "Every 3 months" },
-                ].map((scheduled, index) => (
+                ].map((scheduled) => (
                   <div
                     key={scheduled.name}
                     className="flex items-center justify-between p-3 rounded-lg border border-border/40 bg-accent/20"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
+                      <div className="w-10 h-10 rounded-lg bg-linear-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
                         <Clock className="w-5 h-5 text-white" />
                       </div>
                       <div>
                         <p className="font-medium">{scheduled.name}</p>
-                        <p className="text-sm text-muted-foreground">{scheduled.schedule}</p>
+                        <p className="text-sm text-muted-foreground">
+                          {scheduled.schedule}
+                        </p>
                       </div>
                     </div>
                     <Button variant="outline" size="sm">
@@ -313,5 +372,5 @@ export default function ReportsPage() {
         </motion.div>
       </div>
     </DashboardLayout>
-  )
+  );
 }

@@ -1,9 +1,15 @@
-"use client"
+"use client";
 
-import { DashboardLayout } from "@/components/dashboard/dashboard-layout"
-import { AIAssistant } from "@/components/dashboard/ai-assistant"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { DashboardLayout } from "@/components/dashboard/dashboard-layout";
+import { AIAssistant } from "@/components/dashboard/ai-assistant";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import {
   LineChart,
   Line,
@@ -12,9 +18,9 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-} from "recharts"
-import { motion } from "framer-motion"
-import { TrendingUp, Sparkles } from "lucide-react"
+} from "recharts";
+import { motion } from "framer-motion";
+import { Sparkles } from "lucide-react";
 
 const data = [
   { month: "Jan", value: 4000, predicted: null },
@@ -26,7 +32,7 @@ const data = [
   { month: "Jul", value: null, predicted: 6200 },
   { month: "Aug", value: null, predicted: 6800 },
   { month: "Sep", value: null, predicted: 7200 },
-]
+];
 
 export default function PredictionsPage() {
   return (
@@ -38,20 +44,25 @@ export default function PredictionsPage() {
           className="flex items-center justify-between"
         >
           <div className="flex items-center gap-3">
-            <div className="relative">
+            {/* <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-violet-500 to-purple-500 blur-xl opacity-50" />
               <div className="relative w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500 to-purple-500 flex items-center justify-center">
                 <TrendingUp className="w-6 h-6 text-white" />
               </div>
-            </div>
+            </div> */}
             <div>
-              <h1 className="text-3xl font-bold tracking-tight">Smart Predictions</h1>
+              <h1 className="text-3xl font-bold tracking-tight">
+                Smart Predictions
+              </h1>
               <p className="text-muted-foreground">
                 AI-powered forecasts and predictions
               </p>
             </div>
           </div>
-          <Badge variant="secondary" className="bg-violet-500/10 text-violet-500 border-violet-500/20">
+          <Badge
+            variant="secondary"
+            className="bg-violet-500/10 text-violet-500 border-violet-500/20"
+          >
             <Sparkles className="w-3 h-3 mr-1" />
             AI Powered
           </Badge>
@@ -73,7 +84,10 @@ export default function PredictionsPage() {
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
                   <LineChart data={data}>
-                    <CartesianGrid strokeDasharray="3 3" className="stroke-border/20" />
+                    <CartesianGrid
+                      strokeDasharray="3 3"
+                      className="stroke-border/20"
+                    />
                     <XAxis dataKey="month" />
                     <YAxis />
                     <Tooltip />
@@ -102,5 +116,5 @@ export default function PredictionsPage() {
         </div>
       </div>
     </DashboardLayout>
-  )
+  );
 }

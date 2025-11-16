@@ -1,10 +1,16 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
+import { motion } from "framer-motion";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 import {
   UserPlus,
   ShoppingCart,
@@ -12,8 +18,8 @@ import {
   FileText,
   CreditCard,
   Settings,
-} from "lucide-react"
-import { cn } from "@/lib/utils"
+} from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const activities = [
   {
@@ -78,7 +84,7 @@ const activities = [
     gradient: "from-gray-500 to-slate-500",
     avatar: "/avatar-6.jpg",
   },
-]
+];
 
 export function ActivityFeed() {
   return (
@@ -87,16 +93,18 @@ export function ActivityFeed() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: 0.4 }}
     >
-      <Card className="border-border/40 bg-card/50 backdrop-blur-xl h-[500px] flex flex-col">
+      <Card className="border-border/40 bg-card/50 backdrop-blur-xl h-[500px] flex flex-col gap-0">
         <CardHeader className="border-b border-border/40">
           <CardTitle>Recent Activity</CardTitle>
-          <CardDescription>Latest actions from your team and customers</CardDescription>
+          <CardDescription>
+            Latest actions from your team and customers
+          </CardDescription>
         </CardHeader>
-        <CardContent className="flex-1 p-0">
-          <ScrollArea className="h-full">
+        <CardContent className="p-0">
+          <ScrollArea className="h-[375px]">
             <div className="p-4 space-y-1">
               {activities.map((activity, index) => {
-                const Icon = activity.icon
+                const Icon = activity.icon;
                 return (
                   <motion.div
                     key={activity.id}
@@ -108,7 +116,7 @@ export function ActivityFeed() {
                     {/* User Avatar */}
                     <Avatar className="w-10 h-10 shrink-0 ring-2 ring-border/40 ring-offset-2 ring-offset-background">
                       <AvatarImage src={activity.avatar} alt={activity.user} />
-                      <AvatarFallback className="bg-gradient-to-br from-violet-500 to-purple-500 text-white text-sm">
+                      <AvatarFallback className="bg-linear-to-br from-violet-500 to-purple-500 text-white text-sm">
                         {activity.user
                           .split(" ")
                           .map((n) => n[0])
@@ -121,7 +129,9 @@ export function ActivityFeed() {
                       <div className="flex items-start justify-between gap-2">
                         <p className="text-sm leading-relaxed">
                           <span className="font-semibold">{activity.user}</span>{" "}
-                          <span className="text-muted-foreground">{activity.action}</span>{" "}
+                          <span className="text-muted-foreground">
+                            {activity.action}
+                          </span>{" "}
                           <span className="font-medium">{activity.target}</span>
                         </p>
                         {activity.amount && (
@@ -141,20 +151,22 @@ export function ActivityFeed() {
                           </Badge>
                         )}
                       </div>
-                      <p className="text-xs text-muted-foreground">{activity.time}</p>
+                      <p className="text-xs text-muted-foreground">
+                        {activity.time}
+                      </p>
                     </div>
 
                     {/* Icon */}
                     <div className="relative shrink-0">
                       <div
                         className={cn(
-                          "absolute inset-0 blur-lg opacity-0 group-hover:opacity-40 transition-opacity bg-gradient-to-r",
+                          "absolute inset-0 blur-lg opacity-0 group-hover:opacity-40 transition-opacity bg-linear-to-r",
                           activity.gradient
                         )}
                       />
                       <div
                         className={cn(
-                          "relative w-8 h-8 rounded-lg bg-gradient-to-br flex items-center justify-center",
+                          "relative w-8 h-8 rounded-lg bg-linear-to-br flex items-center justify-center",
                           activity.gradient
                         )}
                       >
@@ -162,12 +174,12 @@ export function ActivityFeed() {
                       </div>
                     </div>
                   </motion.div>
-                )
+                );
               })}
             </div>
           </ScrollArea>
         </CardContent>
       </Card>
     </motion.div>
-  )
+  );
 }

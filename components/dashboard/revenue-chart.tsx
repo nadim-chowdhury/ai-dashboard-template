@@ -1,7 +1,13 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { motion } from "framer-motion";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   Area,
   AreaChart,
@@ -10,7 +16,7 @@ import {
   Tooltip,
   XAxis,
   YAxis,
-} from "recharts"
+} from "recharts";
 
 const data = [
   { month: "Jan", revenue: 45000, expenses: 28000 },
@@ -25,7 +31,7 @@ const data = [
   { month: "Oct", revenue: 78000, expenses: 41000 },
   { month: "Nov", revenue: 85000, expenses: 43000 },
   { month: "Dec", revenue: 92000, expenses: 45000 },
-]
+];
 
 export function RevenueChart() {
   return (
@@ -45,11 +51,11 @@ export function RevenueChart() {
             </div>
             <div className="flex gap-4 text-sm">
               <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-gradient-to-r from-violet-500 to-purple-500" />
+                <div className="w-3 h-3 rounded-full bg-linear-to-r from-violet-500 to-purple-500" />
                 <span className="text-muted-foreground">Revenue</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500" />
+                <div className="w-3 h-3 rounded-full bg-linear-to-r from-blue-500 to-cyan-500" />
                 <span className="text-muted-foreground">Expenses</span>
               </div>
             </div>
@@ -59,16 +65,47 @@ export function RevenueChart() {
           <ResponsiveContainer width="100%" height={350}>
             <AreaChart data={data}>
               <defs>
-                <linearGradient id="revenueGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="rgb(139, 92, 246)" stopOpacity={0.4} />
-                  <stop offset="100%" stopColor="rgb(139, 92, 246)" stopOpacity={0} />
+                <linearGradient
+                  id="revenueGradient"
+                  x1="0"
+                  y1="0"
+                  x2="0"
+                  y2="1"
+                >
+                  <stop
+                    offset="0%"
+                    stopColor="rgb(139, 92, 246)"
+                    stopOpacity={0.4}
+                  />
+                  <stop
+                    offset="100%"
+                    stopColor="rgb(139, 92, 246)"
+                    stopOpacity={0}
+                  />
                 </linearGradient>
-                <linearGradient id="expensesGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="rgb(59, 130, 246)" stopOpacity={0.4} />
-                  <stop offset="100%" stopColor="rgb(59, 130, 246)" stopOpacity={0} />
+                <linearGradient
+                  id="expensesGradient"
+                  x1="0"
+                  y1="0"
+                  x2="0"
+                  y2="1"
+                >
+                  <stop
+                    offset="0%"
+                    stopColor="rgb(59, 130, 246)"
+                    stopOpacity={0.4}
+                  />
+                  <stop
+                    offset="100%"
+                    stopColor="rgb(59, 130, 246)"
+                    stopOpacity={0}
+                  />
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" className="stroke-border/20" />
+              <CartesianGrid
+                strokeDasharray="3 3"
+                className="stroke-border/20"
+              />
               <XAxis
                 dataKey="month"
                 className="text-xs text-muted-foreground"
@@ -83,12 +120,15 @@ export function RevenueChart() {
               />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: "hsl(var(--popover))",
-                  borderColor: "hsl(var(--border))",
+                  backgroundColor: "var(--popover)",
+                  borderColor: "var(--border)",
                   borderRadius: "8px",
                   boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
                 }}
-                formatter={(value: number) => [`$${value.toLocaleString()}`, ""]}
+                // formatter={(value: number) => [
+                //   `$${value.toLocaleString()}`,
+                //   "",
+                // ]}
               />
               <Area
                 type="monotone"
@@ -111,5 +151,5 @@ export function RevenueChart() {
         </CardContent>
       </Card>
     </motion.div>
-  )
+  );
 }

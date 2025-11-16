@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { motion } from "framer-motion"
+import { useState } from "react";
+import { motion } from "framer-motion";
 import {
   Search,
   Bell,
@@ -16,9 +16,9 @@ import {
   Sparkles,
   TrendingUp,
   Zap,
-} from "lucide-react"
-import { useTheme } from "next-themes"
-import { Button } from "@/components/ui/button"
+} from "lucide-react";
+import { useTheme } from "next-themes";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -26,18 +26,17 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
-import { Separator } from "@/components/ui/separator"
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { cn } from "@/lib/utils"
+} from "@/components/ui/popover";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { cn } from "@/lib/utils";
 
 const notifications = [
   {
@@ -76,19 +75,19 @@ const notifications = [
     gradient: "from-orange-500 to-amber-500",
     unread: false,
   },
-]
+];
 
 export function DashboardHeader() {
-  const { theme, setTheme } = useTheme()
-  const [unreadCount] = useState(2)
+  const { theme, setTheme } = useTheme();
+  const [unreadCount] = useState(2);
 
   return (
     <motion.header
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="sticky top-0 z-40 border-b border-border/40 bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60"
+      className="sticky top-0 z-40 bg-background/80 backdrop-blur-xl supports-backdrop-filter:bg-background/60"
     >
-      <div className="flex h-16 items-center gap-4 px-6">
+      <div className="flex h-16 border-b items-center justify-between gap-4 px-6">
         {/* Search Bar */}
         <div className="flex-1 max-w-xl">
           <div className="relative group">
@@ -136,7 +135,7 @@ export function DashboardHeader() {
                   <motion.span
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-gradient-to-r from-red-500 to-pink-500 text-[10px] font-bold text-white flex items-center justify-center shadow-lg"
+                    className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-linear-to-r from-red-500 to-pink-500 text-[10px] font-bold text-white flex items-center justify-center shadow-lg"
                   >
                     {unreadCount}
                   </motion.span>
@@ -158,7 +157,7 @@ export function DashboardHeader() {
               <ScrollArea className="h-[400px]">
                 <div className="p-2 space-y-1">
                   {notifications.map((notification) => {
-                    const Icon = notification.icon
+                    const Icon = notification.icon;
                     return (
                       <motion.div
                         key={notification.id}
@@ -170,16 +169,16 @@ export function DashboardHeader() {
                           notification.unread && "bg-accent/30"
                         )}
                       >
-                        <div className="relative flex-shrink-0">
+                        <div className="relative shrink-0">
                           <div
                             className={cn(
-                              "absolute inset-0 blur-md opacity-40 bg-gradient-to-r",
+                              "absolute inset-0 blur-md opacity-40 bg-linear-to-r",
                               notification.gradient
                             )}
                           />
                           <div
                             className={cn(
-                              "relative w-10 h-10 rounded-lg bg-gradient-to-br flex items-center justify-center",
+                              "relative w-10 h-10 rounded-lg bg-linear-to-br flex items-center justify-center",
                               notification.gradient
                             )}
                           >
@@ -192,7 +191,7 @@ export function DashboardHeader() {
                               {notification.title}
                             </p>
                             {notification.unread && (
-                              <div className="w-2 h-2 rounded-full bg-blue-500 flex-shrink-0 mt-1" />
+                              <div className="w-2 h-2 rounded-full bg-blue-500 shrink-0 mt-1" />
                             )}
                           </div>
                           <p className="text-xs text-muted-foreground line-clamp-2">
@@ -203,12 +202,16 @@ export function DashboardHeader() {
                           </p>
                         </div>
                       </motion.div>
-                    )
+                    );
                   })}
                 </div>
               </ScrollArea>
               <div className="border-t border-border/40 p-2">
-                <Button variant="ghost" className="w-full justify-center" size="sm">
+                <Button
+                  variant="ghost"
+                  className="w-full justify-center"
+                  size="sm"
+                >
                   View all notifications
                 </Button>
               </div>
@@ -226,7 +229,7 @@ export function DashboardHeader() {
               >
                 <Avatar className="h-9 w-9 ring-2 ring-border/40 ring-offset-2 ring-offset-background">
                   <AvatarImage src="/avatar.jpg" alt="User" />
-                  <AvatarFallback className="bg-gradient-to-br from-violet-500 to-purple-500 text-white font-semibold">
+                  <AvatarFallback className="bg-linear-to-r from-violet-500 to-purple-500 text-white font-semibold">
                     JD
                   </AvatarFallback>
                 </Avatar>
@@ -264,5 +267,5 @@ export function DashboardHeader() {
         </div>
       </div>
     </motion.header>
-  )
+  );
 }

@@ -1,11 +1,17 @@
-"use client"
+"use client";
 
-import { DashboardLayout } from "@/components/dashboard/dashboard-layout"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { DashboardLayout } from "@/components/dashboard/dashboard-layout";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Table,
   TableBody,
@@ -13,7 +19,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
+} from "@/components/ui/table";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,21 +27,21 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { motion } from "framer-motion"
+} from "@/components/ui/dropdown-menu";
+import { motion } from "framer-motion";
 import {
   Users,
   UserPlus,
   Search,
   MoreVertical,
   Mail,
-  Phone,
   Shield,
   Ban,
   Edit,
   Trash,
   Crown,
-} from "lucide-react"
+} from "lucide-react";
+import { StatCard } from "@/components/dashboard/stat-card";
 
 const users = [
   {
@@ -104,38 +110,38 @@ const users = [
     joined: "Jun 18, 2024",
     lastActive: "1 hour ago",
   },
-]
+];
 
-const stats = [
-  {
-    label: "Total Users",
-    value: "2,845",
-    change: "+12.5%",
-    icon: Users,
-    gradient: "from-blue-500 to-cyan-500",
-  },
-  {
-    label: "Active Today",
-    value: "1,234",
-    change: "+8.2%",
-    icon: Users,
-    gradient: "from-green-500 to-emerald-500",
-  },
-  {
-    label: "New This Week",
-    value: "156",
-    change: "+23.1%",
-    icon: UserPlus,
-    gradient: "from-violet-500 to-purple-500",
-  },
-  {
-    label: "Premium Users",
-    value: "892",
-    change: "+15.3%",
-    icon: Crown,
-    gradient: "from-orange-500 to-amber-500",
-  },
-]
+// const stats = [
+//   {
+//     label: "Total Users",
+//     value: "2,845",
+//     change: "+12.5%",
+//     icon: Users,
+//     gradient: "from-blue-500 to-cyan-500",
+//   },
+//   {
+//     label: "Active Today",
+//     value: "1,234",
+//     change: "+8.2%",
+//     icon: Users,
+//     gradient: "from-green-500 to-emerald-500",
+//   },
+//   {
+//     label: "New This Week",
+//     value: "156",
+//     change: "+23.1%",
+//     icon: UserPlus,
+//     gradient: "from-violet-500 to-purple-500",
+//   },
+//   {
+//     label: "Premium Users",
+//     value: "892",
+//     change: "+15.3%",
+//     icon: Crown,
+//     gradient: "from-orange-500 to-amber-500",
+//   },
+// ];
 
 export default function UsersPage() {
   return (
@@ -148,12 +154,12 @@ export default function UsersPage() {
           className="flex items-center justify-between"
         >
           <div className="flex items-center gap-3">
-            <div className="relative">
+            {/* <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-green-500 to-emerald-500 blur-xl opacity-50" />
               <div className="relative w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center">
                 <Users className="w-6 h-6 text-white" />
               </div>
-            </div>
+            </div> */}
             <div>
               <h1 className="text-3xl font-bold tracking-tight">Users</h1>
               <p className="text-muted-foreground">
@@ -161,16 +167,16 @@ export default function UsersPage() {
               </p>
             </div>
           </div>
-          <Button className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600">
+          <Button className="bg-linear-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600">
             <UserPlus className="w-4 h-4 mr-2" />
             Add User
           </Button>
         </motion.div>
 
         {/* Stats */}
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {/* <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat, index) => {
-            const Icon = stat.icon
+            const Icon = stat.icon;
             return (
               <motion.div
                 key={stat.label}
@@ -182,12 +188,14 @@ export default function UsersPage() {
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between">
                       <div className="space-y-1">
-                        <p className="text-sm text-muted-foreground">{stat.label}</p>
+                        <p className="text-sm text-muted-foreground">
+                          {stat.label}
+                        </p>
                         <p className="text-2xl font-bold">{stat.value}</p>
                         <p className="text-xs text-green-500">{stat.change}</p>
                       </div>
                       <div
-                        className={`w-12 h-12 rounded-lg bg-gradient-to-br ${stat.gradient} flex items-center justify-center`}
+                        className={`w-12 h-12 rounded-lg bg-linear-to-br ${stat.gradient} flex items-center justify-center`}
                       >
                         <Icon className="w-6 h-6 text-white" />
                       </div>
@@ -195,8 +203,48 @@ export default function UsersPage() {
                   </CardContent>
                 </Card>
               </motion.div>
-            )
+            );
           })}
+        </div> */}
+
+        {/* Stats */}
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <StatCard
+            title="Total Users"
+            value="2,845"
+            change="+12.5%"
+            changeType="positive"
+            icon={Users}
+            gradient="from-blue-500 to-cyan-500"
+            description="vs last month"
+          />
+          <StatCard
+            title="Active Today"
+            value="1,234"
+            change="+8.2%"
+            changeType="positive"
+            icon={Users}
+            gradient="from-green-500 to-emerald-500"
+            description="vs yesterday"
+          />
+          <StatCard
+            title="New This Week"
+            value="156"
+            change="+23.1%"
+            changeType="positive"
+            icon={UserPlus}
+            gradient="from-violet-500 to-purple-500"
+            description="vs last week"
+          />
+          <StatCard
+            title="Premium Users"
+            value="892"
+            change="+15.3%"
+            changeType="positive"
+            icon={Crown}
+            gradient="from-orange-500 to-amber-500"
+            description="vs last month"
+          />
         </div>
 
         {/* Users Table */}
@@ -251,7 +299,7 @@ export default function UsersPage() {
                         <div className="flex items-center gap-3">
                           <Avatar className="w-10 h-10 ring-2 ring-border/40 ring-offset-2 ring-offset-background">
                             <AvatarImage src={user.avatar} alt={user.name} />
-                            <AvatarFallback className="bg-gradient-to-br from-violet-500 to-purple-500 text-white">
+                            <AvatarFallback className="bg-linear-to-br from-violet-500 to-purple-500 text-white">
                               {user.name
                                 .split(" ")
                                 .map((n) => n[0])
@@ -260,7 +308,9 @@ export default function UsersPage() {
                           </Avatar>
                           <div>
                             <p className="font-medium">{user.name}</p>
-                            <p className="text-sm text-muted-foreground">{user.email}</p>
+                            <p className="text-sm text-muted-foreground">
+                              {user.email}
+                            </p>
                           </div>
                         </div>
                       </TableCell>
@@ -280,7 +330,9 @@ export default function UsersPage() {
                       </TableCell>
                       <TableCell>
                         <Badge
-                          variant={user.status === "Active" ? "default" : "secondary"}
+                          variant={
+                            user.status === "Active" ? "default" : "secondary"
+                          }
                           className={
                             user.status === "Active"
                               ? "bg-green-500/10 text-green-500 border-green-500/20"
@@ -357,5 +409,5 @@ export default function UsersPage() {
         </motion.div>
       </div>
     </DashboardLayout>
-  )
+  );
 }

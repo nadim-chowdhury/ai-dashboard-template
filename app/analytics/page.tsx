@@ -1,10 +1,16 @@
-"use client"
+"use client";
 
-import { DashboardLayout } from "@/components/dashboard/dashboard-layout"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { DashboardLayout } from "@/components/dashboard/dashboard-layout";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   LineChart,
   Line,
@@ -21,18 +27,17 @@ import {
   YAxis,
   Tooltip,
   Legend,
-} from "recharts"
-import { motion } from "framer-motion"
+} from "recharts";
+import { motion } from "framer-motion";
 import {
-  TrendingUp,
-  TrendingDown,
   Users,
   Eye,
   MousePointer,
   Clock,
   Download,
   Share2,
-} from "lucide-react"
+} from "lucide-react";
+import { StatCard } from "@/components/dashboard/stat-card";
 
 const lineData = [
   { date: "Jan 1", users: 4000, sessions: 2400, pageViews: 2400 },
@@ -42,13 +47,13 @@ const lineData = [
   { date: "Jan 29", users: 1890, sessions: 4800, pageViews: 2181 },
   { date: "Feb 5", users: 2390, sessions: 3800, pageViews: 2500 },
   { date: "Feb 12", users: 3490, sessions: 4300, pageViews: 2100 },
-]
+];
 
 const pieData = [
   { name: "Desktop", value: 4400, color: "rgb(139, 92, 246)" },
   { name: "Mobile", value: 3000, color: "rgb(59, 130, 246)" },
   { name: "Tablet", value: 2000, color: "rgb(34, 197, 94)" },
-]
+];
 
 const barData = [
   { page: "/home", visitors: 4000, bounceRate: 24 },
@@ -56,7 +61,7 @@ const barData = [
   { page: "/about", visitors: 2000, bounceRate: 38 },
   { page: "/contact", visitors: 2780, bounceRate: 39 },
   { page: "/blog", visitors: 1890, bounceRate: 48 },
-]
+];
 
 export default function AnalyticsPage() {
   return (
@@ -87,7 +92,7 @@ export default function AnalyticsPage() {
         </motion.div>
 
         {/* Quick Stats */}
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {/* <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {[
             {
               title: "Total Users",
@@ -122,7 +127,7 @@ export default function AnalyticsPage() {
               gradient: "from-green-500 to-emerald-500",
             },
           ].map((stat, index) => {
-            const Icon = stat.icon
+            const Icon = stat.icon;
             return (
               <motion.div
                 key={stat.title}
@@ -136,7 +141,7 @@ export default function AnalyticsPage() {
                       {stat.title}
                     </CardTitle>
                     <div
-                      className={`w-10 h-10 rounded-lg bg-gradient-to-br ${stat.gradient} flex items-center justify-center`}
+                      className={`w-10 h-10 rounded-lg bg-linear-to-br ${stat.gradient} flex items-center justify-center`}
                     >
                       <Icon className="w-5 h-5 text-white" />
                     </div>
@@ -155,13 +160,55 @@ export default function AnalyticsPage() {
                           <span className="text-red-500">{stat.change}</span>
                         </>
                       )}
-                      <span className="text-muted-foreground">vs last period</span>
+                      <span className="text-muted-foreground">
+                        vs last period
+                      </span>
                     </div>
                   </CardContent>
                 </Card>
               </motion.div>
-            )
+            );
           })}
+        </div> */}
+
+        {/* Quick Stats */}
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <StatCard
+            title="Total Users"
+            value="24,532"
+            change="+12.3%"
+            changeType="positive"
+            icon={Users}
+            gradient="from-violet-500 to-purple-500"
+            description="vs last period"
+          />
+          <StatCard
+            title="Page Views"
+            value="156,234"
+            change="+8.1%"
+            changeType="positive"
+            icon={Eye}
+            gradient="from-blue-500 to-cyan-500"
+            description="vs last period"
+          />
+          <StatCard
+            title="Avg. Session"
+            value="4m 32s"
+            change="-2.4%"
+            changeType="negative"
+            icon={Clock}
+            gradient="from-orange-500 to-amber-500"
+            description="vs last period"
+          />
+          <StatCard
+            title="Click Rate"
+            value="3.24%"
+            change="+0.5%"
+            changeType="positive"
+            icon={MousePointer}
+            gradient="from-green-500 to-emerald-500"
+            description="vs last period"
+          />
         </div>
 
         {/* Main Charts */}
@@ -192,7 +239,10 @@ export default function AnalyticsPage() {
                 <CardContent>
                   <ResponsiveContainer width="100%" height={400}>
                     <LineChart data={lineData}>
-                      <CartesianGrid strokeDasharray="3 3" className="stroke-border/20" />
+                      <CartesianGrid
+                        strokeDasharray="3 3"
+                        className="stroke-border/20"
+                      />
                       <XAxis
                         dataKey="date"
                         className="text-xs"
@@ -206,9 +256,10 @@ export default function AnalyticsPage() {
                       />
                       <Tooltip
                         contentStyle={{
-                          backgroundColor: "hsl(var(--popover))",
-                          borderColor: "hsl(var(--border))",
+                          backgroundColor: "var(--popover)",
+                          borderColor: "var(--border)",
                           borderRadius: "8px",
+                          boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
                         }}
                       />
                       <Legend />
@@ -242,11 +293,21 @@ export default function AnalyticsPage() {
                 <Card className="border-border/40 bg-card/50 backdrop-blur-xl">
                   <CardHeader>
                     <CardTitle>Device Distribution</CardTitle>
-                    <CardDescription>Traffic breakdown by device type</CardDescription>
+                    <CardDescription>
+                      Traffic breakdown by device type
+                    </CardDescription>
                   </CardHeader>
                   <CardContent>
                     <ResponsiveContainer width="100%" height={300}>
                       <PieChart>
+                        <Tooltip
+                          contentStyle={{
+                            backgroundColor: "var(--popover)",
+                            borderColor: "var(--border)",
+                            borderRadius: "8px",
+                            boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
+                          }}
+                        />
                         <Pie
                           data={pieData}
                           cx="50%"
@@ -263,7 +324,14 @@ export default function AnalyticsPage() {
                             <Cell key={`cell-${index}`} fill={entry.color} />
                           ))}
                         </Pie>
-                        <Tooltip />
+                        <Tooltip
+                          contentStyle={{
+                            backgroundColor: "var(--popover)",
+                            borderColor: "var(--border)",
+                            borderRadius: "8px",
+                            boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
+                          }}
+                        />
                       </PieChart>
                     </ResponsiveContainer>
                   </CardContent>
@@ -282,13 +350,38 @@ export default function AnalyticsPage() {
                   <CardContent>
                     <ResponsiveContainer width="100%" height={300}>
                       <AreaChart data={lineData}>
+                        <Tooltip
+                          contentStyle={{
+                            backgroundColor: "var(--popover)",
+                            borderColor: "var(--border)",
+                            borderRadius: "8px",
+                            boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
+                          }}
+                        />
                         <defs>
-                          <linearGradient id="colorPageViews" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor="rgb(34, 197, 94)" stopOpacity={0.8} />
-                            <stop offset="95%" stopColor="rgb(34, 197, 94)" stopOpacity={0} />
+                          <linearGradient
+                            id="colorPageViews"
+                            x1="0"
+                            y1="0"
+                            x2="0"
+                            y2="1"
+                          >
+                            <stop
+                              offset="5%"
+                              stopColor="rgb(34, 197, 94)"
+                              stopOpacity={0.8}
+                            />
+                            <stop
+                              offset="95%"
+                              stopColor="rgb(34, 197, 94)"
+                              stopOpacity={0}
+                            />
                           </linearGradient>
                         </defs>
-                        <CartesianGrid strokeDasharray="3 3" className="stroke-border/20" />
+                        <CartesianGrid
+                          strokeDasharray="3 3"
+                          className="stroke-border/20"
+                        />
                         <XAxis
                           dataKey="date"
                           className="text-xs"
@@ -300,7 +393,14 @@ export default function AnalyticsPage() {
                           stroke="currentColor"
                           strokeOpacity={0.2}
                         />
-                        <Tooltip />
+                        <Tooltip
+                          contentStyle={{
+                            backgroundColor: "var(--popover)",
+                            borderColor: "var(--border)",
+                            borderRadius: "8px",
+                            boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
+                          }}
+                        />
                         <Area
                           type="monotone"
                           dataKey="pageViews"
@@ -331,7 +431,19 @@ export default function AnalyticsPage() {
                 <CardContent>
                   <ResponsiveContainer width="100%" height={400}>
                     <BarChart data={barData}>
-                      <CartesianGrid strokeDasharray="3 3" className="stroke-border/20" />
+                      <Tooltip
+                        contentStyle={{
+                          backgroundColor: "var(--popover)",
+                          borderColor: "var(--border)",
+                          borderRadius: "8px",
+                          boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
+                        }}
+                        cursor={{ fill: "transparent" }}
+                      />
+                      <CartesianGrid
+                        strokeDasharray="3 3"
+                        className="stroke-border/20"
+                      />
                       <XAxis
                         dataKey="page"
                         className="text-xs"
@@ -345,9 +457,10 @@ export default function AnalyticsPage() {
                       />
                       <Tooltip
                         contentStyle={{
-                          backgroundColor: "hsl(var(--popover))",
-                          borderColor: "hsl(var(--border))",
+                          backgroundColor: "var(--popover)",
+                          borderColor: "var(--border)",
                           borderRadius: "8px",
+                          boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
                         }}
                       />
                       <Legend />
@@ -370,5 +483,5 @@ export default function AnalyticsPage() {
         </Tabs>
       </div>
     </DashboardLayout>
-  )
+  );
 }

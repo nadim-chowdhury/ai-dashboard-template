@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import { DashboardLayout } from "@/components/dashboard/dashboard-layout"
-import { StatCard } from "@/components/dashboard/stat-card"
-import { RevenueChart } from "@/components/dashboard/revenue-chart"
-import { AIAssistant } from "@/components/dashboard/ai-assistant"
-import { ActivityFeed } from "@/components/dashboard/activity-feed"
-import { AnalyticsOverview } from "@/components/dashboard/analytics-overview"
-import { CommandPalette } from "@/components/dashboard/command-palette"
+import { DashboardLayout } from "@/components/dashboard/dashboard-layout";
+import { StatCard } from "@/components/dashboard/stat-card";
+import { RevenueChart } from "@/components/dashboard/revenue-chart";
+import { AIAssistant } from "@/components/dashboard/ai-assistant";
+import { ActivityFeed } from "@/components/dashboard/activity-feed";
+import { AnalyticsOverview } from "@/components/dashboard/analytics-overview";
+import { CommandPalette } from "@/components/dashboard/command-palette";
 import {
   TrendingUp,
   Users,
@@ -14,8 +14,8 @@ import {
   DollarSign,
   ArrowUpRight,
   ArrowDownRight,
-} from "lucide-react"
-import { motion } from "framer-motion"
+} from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Home() {
   return (
@@ -28,9 +28,11 @@ export default function Home() {
         animate={{ opacity: 1, y: 0 }}
         className="space-y-2"
       >
-        <h1 className="text-3xl font-bold tracking-tight">Welcome back, John!</h1>
+        <h1 className="text-3xl font-bold tracking-tight">
+          Welcome back, John!
+        </h1>
         <p className="text-muted-foreground">
-          Here's what's happening with your business today.
+          Here&apos;s what&apos;s happening with your business today.
         </p>
       </motion.div>
 
@@ -118,5 +120,5 @@ export default function Home() {
         <ActivityFeed />
       </div>
     </DashboardLayout>
-  )
+  );
 }

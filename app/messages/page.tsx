@@ -1,17 +1,15 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { DashboardLayout } from "@/components/dashboard/dashboard-layout"
-import { Card, CardContent } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Separator } from "@/components/ui/separator"
-import { motion, AnimatePresence } from "framer-motion"
+import { useState } from "react";
+import { DashboardLayout } from "@/components/dashboard/dashboard-layout";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { motion } from "framer-motion";
 import {
-  MessageSquare,
   Search,
   Send,
   Paperclip,
@@ -19,7 +17,7 @@ import {
   MoreVertical,
   Phone,
   Video,
-} from "lucide-react"
+} from "lucide-react";
 
 const conversations = [
   {
@@ -67,7 +65,7 @@ const conversations = [
     unread: 0,
     online: false,
   },
-]
+];
 
 const messages = [
   {
@@ -87,14 +85,16 @@ const messages = [
   {
     id: 3,
     sender: "Sarah Johnson",
-    content: "I'm good! I wanted to follow up on the project we discussed yesterday.",
+    content:
+      "I'm good! I wanted to follow up on the project we discussed yesterday.",
     time: "10:33 AM",
     isMine: false,
   },
   {
     id: 4,
     sender: "Me",
-    content: "Of course! I've made some progress. Let me share the latest updates with you.",
+    content:
+      "Of course! I've made some progress. Let me share the latest updates with you.",
     time: "10:35 AM",
     isMine: true,
   },
@@ -105,11 +105,11 @@ const messages = [
     time: "10:37 AM",
     isMine: false,
   },
-]
+];
 
 export default function MessagesPage() {
-  const [selectedChat, setSelectedChat] = useState(conversations[0])
-  const [messageInput, setMessageInput] = useState("")
+  const [selectedChat, setSelectedChat] = useState(conversations[0]);
+  const [messageInput, setMessageInput] = useState("");
 
   return (
     <DashboardLayout>
@@ -120,12 +120,12 @@ export default function MessagesPage() {
           animate={{ opacity: 1, y: 0 }}
           className="flex items-center gap-3"
         >
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-teal-500 to-cyan-500 blur-xl opacity-50" />
-            <div className="relative w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center">
+          {/* <div className="relative">
+            <div className="absolute inset-0 bg-linear-to-r from-teal-500 to-cyan-500 blur-xl opacity-50" />
+            <div className="relative w-12 h-12 rounded-xl bg-linear-to-br from-teal-500 to-cyan-500 flex items-center justify-center">
               <MessageSquare className="w-6 h-6 text-white" />
             </div>
-          </div>
+          </div> */}
           <div>
             <h1 className="text-3xl font-bold tracking-tight">Messages</h1>
             <p className="text-muted-foreground">Chat with your team members</p>
@@ -138,11 +138,11 @@ export default function MessagesPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
-          <Card className="border-border/40 bg-card/50 backdrop-blur-xl overflow-hidden">
+          <Card className="border-border/40 bg-card/50 backdrop-blur-xl overflow-hidden py-0">
             <div className="grid lg:grid-cols-[350px_1fr] h-[600px]">
               {/* Conversations List */}
               <div className="border-r border-border/40">
-                <div className="p-4 border-b border-border/40">
+                <div className="p-[18px] border-b border-border/40">
                   <div className="relative">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <Input
@@ -169,7 +169,7 @@ export default function MessagesPage() {
                         <div className="relative">
                           <Avatar className="w-12 h-12">
                             <AvatarImage src={conv.avatar} alt={conv.name} />
-                            <AvatarFallback className="bg-gradient-to-br from-violet-500 to-purple-500 text-white">
+                            <AvatarFallback className="bg-linear-to-br from-violet-500 to-purple-500 text-white">
                               {conv.name
                                 .split(" ")
                                 .map((n) => n[0])
@@ -182,7 +182,9 @@ export default function MessagesPage() {
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between mb-1">
-                            <p className="font-semibold truncate">{conv.name}</p>
+                            <p className="font-semibold truncate">
+                              {conv.name}
+                            </p>
                             <span className="text-xs text-muted-foreground">
                               {conv.time}
                             </span>
@@ -192,7 +194,7 @@ export default function MessagesPage() {
                               {conv.lastMessage}
                             </p>
                             {conv.unread > 0 && (
-                              <Badge className="ml-2 bg-gradient-to-r from-violet-500 to-purple-500 text-white border-0">
+                              <Badge className="ml-2 bg-linear-to-r from-violet-500 to-purple-500 text-white border-0">
                                 {conv.unread}
                               </Badge>
                             )}
@@ -211,8 +213,11 @@ export default function MessagesPage() {
                   <div className="flex items-center gap-3">
                     <div className="relative">
                       <Avatar className="w-10 h-10">
-                        <AvatarImage src={selectedChat.avatar} alt={selectedChat.name} />
-                        <AvatarFallback className="bg-gradient-to-br from-violet-500 to-purple-500 text-white">
+                        <AvatarImage
+                          src={selectedChat.avatar}
+                          alt={selectedChat.name}
+                        />
+                        <AvatarFallback className="bg-linear-to-br from-violet-500 to-purple-500 text-white">
                           {selectedChat.name
                             .split(" ")
                             .map((n) => n[0])
@@ -252,12 +257,17 @@ export default function MessagesPage() {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.5 + index * 0.05 }}
-                        className={`flex gap-3 ${msg.isMine ? "flex-row-reverse" : ""}`}
+                        className={`flex gap-3 ${
+                          msg.isMine ? "flex-row-reverse" : ""
+                        }`}
                       >
                         {!msg.isMine && (
                           <Avatar className="w-8 h-8 shrink-0">
-                            <AvatarImage src={selectedChat.avatar} alt={msg.sender} />
-                            <AvatarFallback className="bg-gradient-to-br from-violet-500 to-purple-500 text-white text-xs">
+                            <AvatarImage
+                              src={selectedChat.avatar}
+                              alt={msg.sender}
+                            />
+                            <AvatarFallback className="bg-linear-to-br from-violet-500 to-purple-500 text-white text-xs">
                               {msg.sender
                                 .split(" ")
                                 .map((n) => n[0])
@@ -266,16 +276,20 @@ export default function MessagesPage() {
                           </Avatar>
                         )}
                         <div
-                          className={`max-w-[70%] ${msg.isMine ? "items-end" : "items-start"}`}
+                          className={`max-w-[70%] ${
+                            msg.isMine ? "items-end" : "items-start"
+                          }`}
                         >
                           <div
                             className={`rounded-2xl px-4 py-2 ${
                               msg.isMine
-                                ? "bg-gradient-to-r from-violet-500 to-purple-500 text-white"
+                                ? "bg-linear-to-r from-violet-500 to-purple-500 text-white"
                                 : "bg-accent"
                             }`}
                           >
-                            <p className="text-sm leading-relaxed">{msg.content}</p>
+                            <p className="text-sm leading-relaxed">
+                              {msg.content}
+                            </p>
                           </div>
                           <p className="text-xs text-muted-foreground mt-1 px-2">
                             {msg.time}
@@ -300,7 +314,7 @@ export default function MessagesPage() {
                       onKeyPress={(e) => {
                         if (e.key === "Enter" && messageInput.trim()) {
                           // Handle send
-                          setMessageInput("")
+                          setMessageInput("");
                         }
                       }}
                     />
@@ -309,7 +323,7 @@ export default function MessagesPage() {
                     </Button>
                     <Button
                       size="icon"
-                      className="shrink-0 bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600"
+                      className="shrink-0 bg-linear-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600"
                       disabled={!messageInput.trim()}
                     >
                       <Send className="w-5 h-5" />
@@ -322,5 +336,5 @@ export default function MessagesPage() {
         </motion.div>
       </div>
     </DashboardLayout>
-  )
+  );
 }

@@ -16,7 +16,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "NexusAI Dashboard - Advanced AI-Powered Analytics",
-  description: "Professional dashboard template with AI-powered insights, beautiful charts, and modern UI/UX",
+  description:
+    "Professional dashboard template with AI-powered insights, beautiful charts, and modern UI/UX",
   keywords: ["dashboard", "AI", "analytics", "SaaS", "admin panel"],
 };
 

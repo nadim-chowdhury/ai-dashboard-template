@@ -1,10 +1,16 @@
-"use client"
+"use client";
 
-import { DashboardLayout } from "@/components/dashboard/dashboard-layout"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { motion } from "framer-motion"
+import { DashboardLayout } from "@/components/dashboard/dashboard-layout";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { motion } from "framer-motion";
 import {
   Calendar as CalendarIcon,
   Plus,
@@ -14,7 +20,7 @@ import {
   MapPin,
   Users,
   Video,
-} from "lucide-react"
+} from "lucide-react";
 
 const events = [
   {
@@ -72,9 +78,9 @@ const events = [
     location: "Virtual",
     color: "pink",
   },
-]
+];
 
-const upcomingEvents = events.slice(0, 3)
+const upcomingEvents = events.slice(0, 3);
 
 export default function CalendarPage() {
   return (
@@ -87,12 +93,12 @@ export default function CalendarPage() {
           className="flex items-center justify-between"
         >
           <div className="flex items-center gap-3">
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-pink-500 blur-xl opacity-50" />
-              <div className="relative w-12 h-12 rounded-xl bg-gradient-to-br from-red-500 to-pink-500 flex items-center justify-center">
+            {/* <div className="relative">
+              <div className="absolute inset-0 bg-linear-to-r from-red-500 to-pink-500 blur-xl opacity-50" />
+              <div className="relative w-12 h-12 rounded-xl bg-linear-to-br from-red-500 to-pink-500 flex items-center justify-center">
                 <CalendarIcon className="w-6 h-6 text-white" />
               </div>
-            </div>
+            </div> */}
             <div>
               <h1 className="text-3xl font-bold tracking-tight">Calendar</h1>
               <p className="text-muted-foreground">
@@ -100,7 +106,7 @@ export default function CalendarPage() {
               </p>
             </div>
           </div>
-          <Button className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600">
+          <Button className="bg-linear-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600">
             <Plus className="w-4 h-4 mr-2" />
             New Event
           </Button>
@@ -122,9 +128,7 @@ export default function CalendarPage() {
                       <Button variant="outline" size="icon">
                         <ChevronLeft className="w-4 h-4" />
                       </Button>
-                      <Button variant="outline" size="sm">
-                        Today
-                      </Button>
+                      <Button variant="outline">Today</Button>
                       <Button variant="outline" size="icon">
                         <ChevronRight className="w-4 h-4" />
                       </Button>
@@ -134,18 +138,20 @@ export default function CalendarPage() {
                 <CardContent>
                   {/* Calendar Grid */}
                   <div className="grid grid-cols-7 gap-2">
-                    {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
-                      <div
-                        key={day}
-                        className="text-center text-sm font-semibold text-muted-foreground p-2"
-                      >
-                        {day}
-                      </div>
-                    ))}
+                    {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(
+                      (day) => (
+                        <div
+                          key={day}
+                          className="text-center text-sm font-semibold text-muted-foreground p-2"
+                        >
+                          {day}
+                        </div>
+                      )
+                    )}
                     {Array.from({ length: 35 }, (_, i) => {
-                      const day = i - 2
-                      const isToday = day === 15
-                      const hasEvent = day === 15 || day === 16 || day === 17
+                      const day = i - 2;
+                      const isToday = day === 15;
+                      const hasEvent = day === 15 || day === 16 || day === 17;
                       return (
                         <div
                           key={i}
@@ -153,9 +159,11 @@ export default function CalendarPage() {
                             day < 1 || day > 30
                               ? "bg-muted/20 text-muted-foreground/50"
                               : "bg-accent/20 hover:bg-accent/30"
-                          } ${isToday ? "ring-2 ring-primary" : ""}`}
+                          } ${isToday ? "ring-2 ring-primary/40" : ""}`}
                         >
-                          <div className="text-sm font-medium">{day > 0 && day <= 30 ? day : ""}</div>
+                          <div className="text-sm font-medium">
+                            {day > 0 && day <= 30 ? day : ""}
+                          </div>
                           {hasEvent && (
                             <div className="flex gap-0.5 mt-1">
                               <div className="w-1 h-1 rounded-full bg-violet-500" />
@@ -163,7 +171,7 @@ export default function CalendarPage() {
                             </div>
                           )}
                         </div>
-                      )
+                      );
                     })}
                   </div>
                 </CardContent>
@@ -180,7 +188,9 @@ export default function CalendarPage() {
             <Card className="border-border/40 bg-card/50 backdrop-blur-xl">
               <CardHeader>
                 <CardTitle>Upcoming Events</CardTitle>
-                <CardDescription>Your schedule for the next few days</CardDescription>
+                <CardDescription>
+                  Your schedule for the next few days
+                </CardDescription>
               </CardHeader>
               <CardContent className="space-y-3">
                 {upcomingEvents.map((event, index) => (
@@ -194,7 +204,7 @@ export default function CalendarPage() {
                     <div className="flex items-start justify-between">
                       <div className="flex items-start gap-3">
                         <div
-                          className={`w-10 h-10 rounded-lg bg-gradient-to-br from-${event.color}-500 to-${event.color}-600 flex items-center justify-center shrink-0`}
+                          className={`w-10 h-10 rounded-lg bg-linear-to-br from-${event.color}-500 to-${event.color}-600 flex items-center justify-center shrink-0`}
                         >
                           <CalendarIcon className="w-5 h-5 text-white" />
                         </div>
@@ -240,18 +250,20 @@ export default function CalendarPage() {
           <Card className="border-border/40 bg-card/50 backdrop-blur-xl">
             <CardHeader>
               <CardTitle>All Events</CardTitle>
-              <CardDescription>Complete list of your scheduled events</CardDescription>
+              <CardDescription>
+                Complete list of your scheduled events
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {events.map((event, index) => (
+                {events.map((event) => (
                   <div
                     key={event.id}
                     className="flex items-center justify-between p-4 rounded-lg border border-border/40 bg-accent/20 hover:bg-accent/30 transition-colors cursor-pointer"
                   >
                     <div className="flex items-center gap-4">
                       <div
-                        className={`w-12 h-12 rounded-lg bg-gradient-to-br from-${event.color}-500 to-${event.color}-600 flex items-center justify-center`}
+                        className={`w-12 h-12 rounded-lg bg-linear-to-br from-${event.color}-500 to-${event.color}-600 flex items-center justify-center`}
                       >
                         <CalendarIcon className="w-6 h-6 text-white" />
                       </div>
@@ -285,5 +297,5 @@ export default function CalendarPage() {
         </motion.div>
       </div>
     </DashboardLayout>
-  )
+  );
 }

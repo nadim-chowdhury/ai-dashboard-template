@@ -1,7 +1,13 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { motion } from "framer-motion";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   Bar,
   BarChart,
@@ -10,7 +16,7 @@ import {
   XAxis,
   YAxis,
   Cell,
-} from "recharts"
+} from "recharts";
 
 const data = [
   { category: "Direct", value: 3400, color: "rgb(139, 92, 246)" },
@@ -18,7 +24,7 @@ const data = [
   { category: "Referral", value: 2100, color: "rgb(34, 197, 94)" },
   { category: "Social", value: 1900, color: "rgb(251, 146, 60)" },
   { category: "Email", value: 1600, color: "rgb(236, 72, 153)" },
-]
+];
 
 export function AnalyticsOverview() {
   return (
@@ -33,7 +39,7 @@ export function AnalyticsOverview() {
           <CardDescription>Breakdown of your traffic by source</CardDescription>
         </CardHeader>
         <CardContent>
-          <ResponsiveContainer width="100%" height={300}>
+          <ResponsiveContainer width="100%" height={275}>
             <BarChart data={data}>
               <XAxis
                 dataKey="category"
@@ -48,14 +54,18 @@ export function AnalyticsOverview() {
               />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: "hsl(var(--popover))",
-                  borderColor: "hsl(var(--border))",
+                  backgroundColor: "var(--popover)",
+                  borderColor: "var(--border)",
                   borderRadius: "8px",
-                  boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
+                  // boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
                 }}
-                cursor={{ fill: "hsl(var(--accent))" }}
+                cursor={{ fill: "transparent" }}
               />
-              <Bar dataKey="value" radius={[8, 8, 0, 0]} animationDuration={1500}>
+              <Bar
+                dataKey="value"
+                radius={[8, 8, 0, 0]}
+                animationDuration={1500}
+              >
                 {data.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.color} />
                 ))}
@@ -77,12 +87,14 @@ export function AnalyticsOverview() {
                   style={{ backgroundColor: item.color }}
                 />
                 <p className="text-xs font-medium">{item.category}</p>
-                <p className="text-xs text-muted-foreground">{item.value.toLocaleString()}</p>
+                <p className="text-xs text-muted-foreground">
+                  {item.value.toLocaleString()}
+                </p>
               </motion.div>
             ))}
           </div>
         </CardContent>
       </Card>
     </motion.div>
-  )
+  );
 }

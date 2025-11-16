@@ -1,14 +1,17 @@
-"use client"
+"use client";
 
-import { DashboardLayout } from "@/components/dashboard/dashboard-layout"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { DashboardLayout } from "@/components/dashboard/dashboard-layout";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import {
   AreaChart,
   Area,
-  BarChart,
-  Bar,
   PieChart,
   Pie,
   Cell,
@@ -18,8 +21,8 @@ import {
   YAxis,
   Tooltip,
   Legend,
-} from "recharts"
-import { motion } from "framer-motion"
+} from "recharts";
+import { motion } from "framer-motion";
 import {
   ShoppingCart,
   TrendingUp,
@@ -28,7 +31,8 @@ import {
   ArrowUpRight,
   ArrowDownRight,
   Download,
-} from "lucide-react"
+} from "lucide-react";
+import { StatCard } from "@/components/dashboard/stat-card";
 
 const salesData = [
   { month: "Jan", sales: 12500, orders: 245, revenue: 45000 },
@@ -37,14 +41,14 @@ const salesData = [
   { month: "Apr", sales: 18500, orders: 356, revenue: 61000 },
   { month: "May", sales: 17200, orders: 321, revenue: 58000 },
   { month: "Jun", sales: 21000, orders: 412, revenue: 70000 },
-]
+];
 
 const productData = [
   { name: "Premium Plan", value: 4800, color: "rgb(139, 92, 246)" },
   { name: "Pro Plan", value: 3200, color: "rgb(59, 130, 246)" },
   { name: "Starter Plan", value: 2100, color: "rgb(34, 197, 94)" },
   { name: "Add-ons", value: 1400, color: "rgb(251, 146, 60)" },
-]
+];
 
 const topProducts = [
   {
@@ -75,7 +79,7 @@ const topProducts = [
     growth: "+25.8%",
     trend: "up",
   },
-]
+];
 
 export default function SalesPage() {
   return (
@@ -88,12 +92,12 @@ export default function SalesPage() {
           className="flex items-center justify-between"
         >
           <div className="flex items-center gap-3">
-            <div className="relative">
+            {/* <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-blue-500 blur-xl opacity-50" />
               <div className="relative w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-blue-500 flex items-center justify-center">
                 <ShoppingCart className="w-6 h-6 text-white" />
               </div>
-            </div>
+            </div> */}
             <div>
               <h1 className="text-3xl font-bold tracking-tight">Sales</h1>
               <p className="text-muted-foreground">
@@ -108,7 +112,7 @@ export default function SalesPage() {
         </motion.div>
 
         {/* Stats Grid */}
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {/* <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {[
             {
               label: "Total Revenue",
@@ -143,7 +147,7 @@ export default function SalesPage() {
               gradient: "from-orange-500 to-amber-500",
             },
           ].map((stat, index) => {
-            const Icon = stat.icon
+            const Icon = stat.icon;
             return (
               <motion.div
                 key={stat.label}
@@ -167,20 +171,64 @@ export default function SalesPage() {
                         )}
                         <span
                           className={
-                            stat.trend === "up" ? "text-green-500" : "text-red-500"
+                            stat.trend === "up"
+                              ? "text-green-500"
+                              : "text-red-500"
                           }
                         >
                           {stat.change}
                         </span>
                       </div>
                     </div>
-                    <p className="text-sm text-muted-foreground mb-1">{stat.label}</p>
+                    <p className="text-sm text-muted-foreground mb-1">
+                      {stat.label}
+                    </p>
                     <p className="text-2xl font-bold">{stat.value}</p>
                   </CardContent>
                 </Card>
               </motion.div>
-            )
+            );
           })}
+        </div> */}
+
+        {/* Stats Grid */}
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <StatCard
+            title="Total Revenue"
+            value="$92,548"
+            change="+12.5%"
+            changeType="positive"
+            icon={DollarSign}
+            gradient="from-violet-500 to-purple-500"
+            description="vs last month"
+          />
+          <StatCard
+            title="Total Orders"
+            value="1,234"
+            change="+8.2%"
+            changeType="positive"
+            icon={ShoppingCart}
+            gradient="from-blue-500 to-cyan-500"
+            description="vs last month"
+          />
+          <StatCard
+            title="Avg Order Value"
+            value="$75.02"
+            change="+4.3%"
+            changeType="positive"
+            icon={TrendingUp}
+            gradient="from-green-500 to-emerald-500"
+            description="vs last month"
+          />
+          <StatCard
+            title="Products Sold"
+            value="4,892"
+            change="-2.1%"
+            changeType="negative"
+            icon={Package}
+            gradient="from-orange-500 to-amber-500"
+            description="vs last month"
+          />
         </div>
 
         {/* Charts */}
@@ -202,16 +250,47 @@ export default function SalesPage() {
                   <ResponsiveContainer width="100%" height={350}>
                     <AreaChart data={salesData}>
                       <defs>
-                        <linearGradient id="revenueGrad" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0%" stopColor="rgb(139, 92, 246)" stopOpacity={0.4} />
-                          <stop offset="100%" stopColor="rgb(139, 92, 246)" stopOpacity={0} />
+                        <linearGradient
+                          id="revenueGrad"
+                          x1="0"
+                          y1="0"
+                          x2="0"
+                          y2="1"
+                        >
+                          <stop
+                            offset="0%"
+                            stopColor="rgb(139, 92, 246)"
+                            stopOpacity={0.4}
+                          />
+                          <stop
+                            offset="100%"
+                            stopColor="rgb(139, 92, 246)"
+                            stopOpacity={0}
+                          />
                         </linearGradient>
-                        <linearGradient id="ordersGrad" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0%" stopColor="rgb(59, 130, 246)" stopOpacity={0.4} />
-                          <stop offset="100%" stopColor="rgb(59, 130, 246)" stopOpacity={0} />
+                        <linearGradient
+                          id="ordersGrad"
+                          x1="0"
+                          y1="0"
+                          x2="0"
+                          y2="1"
+                        >
+                          <stop
+                            offset="0%"
+                            stopColor="rgb(59, 130, 246)"
+                            stopOpacity={0.4}
+                          />
+                          <stop
+                            offset="100%"
+                            stopColor="rgb(59, 130, 246)"
+                            stopOpacity={0}
+                          />
                         </linearGradient>
                       </defs>
-                      <CartesianGrid strokeDasharray="3 3" className="stroke-border/20" />
+                      <CartesianGrid
+                        strokeDasharray="3 3"
+                        className="stroke-border/20"
+                      />
                       <XAxis
                         dataKey="month"
                         className="text-xs"
@@ -225,9 +304,10 @@ export default function SalesPage() {
                       />
                       <Tooltip
                         contentStyle={{
-                          backgroundColor: "hsl(var(--popover))",
-                          borderColor: "hsl(var(--border))",
+                          backgroundColor: "var(--popover)",
+                          borderColor: "var(--border)",
                           borderRadius: "8px",
+                          boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
                         }}
                       />
                       <Legend />
@@ -262,10 +342,12 @@ export default function SalesPage() {
             <Card className="border-border/40 bg-card/50 backdrop-blur-xl">
               <CardHeader>
                 <CardTitle>Sales by Product</CardTitle>
-                <CardDescription>Revenue distribution by product type</CardDescription>
+                <CardDescription>
+                  Revenue distribution by product type
+                </CardDescription>
               </CardHeader>
               <CardContent>
-                <ResponsiveContainer width="100%" height={300}>
+                <ResponsiveContainer width="100%" height={294}>
                   <PieChart>
                     <Pie
                       data={productData}
@@ -283,7 +365,14 @@ export default function SalesPage() {
                         <Cell key={`cell-${index}`} fill={entry.color} />
                       ))}
                     </Pie>
-                    <Tooltip />
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: "var(--popover)",
+                        borderColor: "var(--border)",
+                        borderRadius: "8px",
+                        boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
+                      }}
+                    />
                   </PieChart>
                 </ResponsiveContainer>
                 <div className="grid grid-cols-2 gap-2 mt-4">
@@ -313,7 +402,9 @@ export default function SalesPage() {
           <Card className="border-border/40 bg-card/50 backdrop-blur-xl">
             <CardHeader>
               <CardTitle>Top Performing Products</CardTitle>
-              <CardDescription>Best selling products this month</CardDescription>
+              <CardDescription>
+                Best selling products this month
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -323,7 +414,7 @@ export default function SalesPage() {
                     className="flex items-center justify-between p-4 rounded-lg border border-border/40 bg-accent/20 hover:bg-accent/30 transition-colors"
                   >
                     <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-violet-500 to-purple-500 flex items-center justify-center font-bold text-white">
+                      <div className="w-10 h-10 rounded-lg bg-linear-to-br from-violet-500 to-purple-500 flex items-center justify-center font-bold text-white">
                         #{index + 1}
                       </div>
                       <div>
@@ -344,7 +435,9 @@ export default function SalesPage() {
                           )}
                           <span
                             className={`text-xs ${
-                              product.trend === "up" ? "text-green-500" : "text-red-500"
+                              product.trend === "up"
+                                ? "text-green-500"
+                                : "text-red-500"
                             }`}
                           >
                             {product.growth}
@@ -360,5 +453,5 @@ export default function SalesPage() {
         </motion.div>
       </div>
     </DashboardLayout>
-  )
+  );
 }

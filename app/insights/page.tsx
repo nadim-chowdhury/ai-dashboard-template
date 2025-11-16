@@ -1,9 +1,15 @@
-"use client"
+"use client";
 
-import { DashboardLayout } from "@/components/dashboard/dashboard-layout"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { DashboardLayout } from "@/components/dashboard/dashboard-layout";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   AreaChart,
   Area,
@@ -15,18 +21,10 @@ import {
   YAxis,
   Tooltip,
   Legend,
-} from "recharts"
-import { motion } from "framer-motion"
-import {
-  Brain,
-  TrendingUp,
-  Zap,
-  Target,
-  AlertCircle,
-  Sparkles,
-  ArrowUpRight,
-  ArrowDownRight,
-} from "lucide-react"
+} from "recharts";
+import { motion } from "framer-motion";
+import { TrendingUp, Zap, Target, AlertCircle, Sparkles } from "lucide-react";
+import { StatCard } from "@/components/dashboard/stat-card";
 
 const predictionData = [
   { month: "Jan", actual: 45000, predicted: 44500, confidence: 95 },
@@ -38,7 +36,7 @@ const predictionData = [
   { month: "Jul", actual: null, predicted: 72000, confidence: 91 },
   { month: "Aug", actual: null, predicted: 78000, confidence: 88 },
   { month: "Sep", actual: null, predicted: 82000, confidence: 85 },
-]
+];
 
 const churnRiskData = [
   { week: "W1", risk: 12, retained: 88 },
@@ -47,7 +45,7 @@ const churnRiskData = [
   { week: "W4", risk: 18, retained: 82 },
   { week: "W5", risk: 14, retained: 86 },
   { week: "W6", risk: 16, retained: 84 },
-]
+];
 
 const insights = [
   {
@@ -90,7 +88,7 @@ const insights = [
     trend: "up",
     value: "+12%",
   },
-]
+];
 
 export default function InsightsPage() {
   return (
@@ -103,12 +101,12 @@ export default function InsightsPage() {
           className="flex items-center justify-between"
         >
           <div className="flex items-center gap-3">
-            <div className="relative">
+            {/* <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-rose-500 blur-xl opacity-50" />
               <div className="relative w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500 to-rose-500 flex items-center justify-center">
                 <Brain className="w-6 h-6 text-white" />
               </div>
-            </div>
+            </div> */}
             <div>
               <h1 className="text-3xl font-bold tracking-tight">AI Insights</h1>
               <p className="text-muted-foreground">
@@ -116,16 +114,19 @@ export default function InsightsPage() {
               </p>
             </div>
           </div>
-          <Badge variant="secondary" className="bg-pink-500/10 text-pink-500 border-pink-500/20">
+          <Badge
+            variant="secondary"
+            className="bg-pink-500/10 text-pink-500 border-pink-500/20"
+          >
             <Sparkles className="w-3 h-3 mr-1" />
             AI Powered
           </Badge>
         </motion.div>
 
         {/* AI Insights Cards */}
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {/* <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {insights.map((insight, index) => {
-            const Icon = insight.icon
+            const Icon = insight.icon;
             return (
               <motion.div
                 key={insight.title}
@@ -169,7 +170,9 @@ export default function InsightsPage() {
                         )}
                         <span
                           className={`font-semibold ${
-                            insight.trend === "up" ? "text-green-500" : "text-red-500"
+                            insight.trend === "up"
+                              ? "text-green-500"
+                              : "text-red-500"
                           }`}
                         >
                           {insight.value}
@@ -182,8 +185,48 @@ export default function InsightsPage() {
                   </CardContent>
                 </Card>
               </motion.div>
-            )
+            );
           })}
+        </div> */}
+
+        {/* AI Insights Cards */}
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <StatCard
+            title="Revenue Forecast"
+            value="$82K"
+            change="+17%"
+            changeType="positive"
+            icon={TrendingUp}
+            gradient="from-violet-500 to-purple-500"
+            description={`${insights[0].confidence}% confidence · ${insights[0].impact} impact`}
+          />
+          <StatCard
+            title="Churn Risk Alert"
+            value="14 users"
+            change="High Risk"
+            changeType="negative"
+            icon={AlertCircle}
+            gradient="from-orange-500 to-red-500"
+            description={`${insights[1].confidence}% confidence · ${insights[1].impact} impact`}
+          />
+          <StatCard
+            title="Growth Opportunity"
+            value="+23%"
+            change="Premium Tier"
+            changeType="positive"
+            icon={Target}
+            gradient="from-green-500 to-emerald-500"
+            description={`${insights[2].confidence}% confidence · ${insights[2].impact} impact`}
+          />
+          <StatCard
+            title="Performance Boost"
+            value="+12%"
+            change="Efficiency"
+            changeType="positive"
+            icon={Zap}
+            gradient="from-blue-500 to-cyan-500"
+            description={`${insights[3].confidence}% confidence · ${insights[3].impact} impact`}
+          />
         </div>
 
         {/* Prediction Charts */}
@@ -209,16 +252,47 @@ export default function InsightsPage() {
                 <ResponsiveContainer width="100%" height={350}>
                   <AreaChart data={predictionData}>
                     <defs>
-                      <linearGradient id="actualGradient" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="rgb(139, 92, 246)" stopOpacity={0.4} />
-                        <stop offset="100%" stopColor="rgb(139, 92, 246)" stopOpacity={0} />
+                      <linearGradient
+                        id="actualGradient"
+                        x1="0"
+                        y1="0"
+                        x2="0"
+                        y2="1"
+                      >
+                        <stop
+                          offset="0%"
+                          stopColor="rgb(139, 92, 246)"
+                          stopOpacity={0.4}
+                        />
+                        <stop
+                          offset="100%"
+                          stopColor="rgb(139, 92, 246)"
+                          stopOpacity={0}
+                        />
                       </linearGradient>
-                      <linearGradient id="predictedGradient" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="rgb(236, 72, 153)" stopOpacity={0.4} />
-                        <stop offset="100%" stopColor="rgb(236, 72, 153)" stopOpacity={0} />
+                      <linearGradient
+                        id="predictedGradient"
+                        x1="0"
+                        y1="0"
+                        x2="0"
+                        y2="1"
+                      >
+                        <stop
+                          offset="0%"
+                          stopColor="rgb(236, 72, 153)"
+                          stopOpacity={0.4}
+                        />
+                        <stop
+                          offset="100%"
+                          stopColor="rgb(236, 72, 153)"
+                          stopOpacity={0}
+                        />
                       </linearGradient>
                     </defs>
-                    <CartesianGrid strokeDasharray="3 3" className="stroke-border/20" />
+                    <CartesianGrid
+                      strokeDasharray="3 3"
+                      className="stroke-border/20"
+                    />
                     <XAxis
                       dataKey="month"
                       className="text-xs"
@@ -229,15 +303,21 @@ export default function InsightsPage() {
                       className="text-xs"
                       stroke="currentColor"
                       strokeOpacity={0.2}
-                      tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
+                      tickFormatter={(value) =>
+                        `$${(value / 1000).toFixed(0)}k`
+                      }
                     />
                     <Tooltip
                       contentStyle={{
-                        backgroundColor: "hsl(var(--popover))",
-                        borderColor: "hsl(var(--border))",
+                        backgroundColor: "var(--popover)",
+                        borderColor: "var(--border)",
                         borderRadius: "8px",
+                        boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
                       }}
-                      formatter={(value: number) => [`$${value.toLocaleString()}`, ""]}
+                      // formatter={(value: number) => [
+                      //   `$${value.toLocaleString()}`,
+                      //   "",
+                      // ]}
                     />
                     <Legend />
                     <Area
@@ -283,7 +363,10 @@ export default function InsightsPage() {
               <CardContent>
                 <ResponsiveContainer width="100%" height={350}>
                   <LineChart data={churnRiskData}>
-                    <CartesianGrid strokeDasharray="3 3" className="stroke-border/20" />
+                    <CartesianGrid
+                      strokeDasharray="3 3"
+                      className="stroke-border/20"
+                    />
                     <XAxis
                       dataKey="week"
                       className="text-xs"
@@ -298,11 +381,12 @@ export default function InsightsPage() {
                     />
                     <Tooltip
                       contentStyle={{
-                        backgroundColor: "hsl(var(--popover))",
-                        borderColor: "hsl(var(--border))",
+                        backgroundColor: "var(--popover)",
+                        borderColor: "var(--border)",
                         borderRadius: "8px",
+                        boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
                       }}
-                      formatter={(value: number) => [`${value}%`, ""]}
+                      // formatter={(value: number) => [`${value}%`, ""]}
                     />
                     <Legend />
                     <Line
@@ -373,7 +457,7 @@ export default function InsightsPage() {
                   className="flex items-start gap-4 p-4 rounded-lg border border-border/40 bg-accent/20 hover:bg-accent/30 transition-colors"
                 >
                   <div
-                    className={`w-10 h-10 rounded-lg bg-gradient-to-br from-${rec.color}-500 to-${rec.color}-600 flex items-center justify-center shrink-0`}
+                    className={`w-10 h-10 rounded-lg bg-linear-to-br from-${rec.color}-500 to-${rec.color}-600 flex items-center justify-center shrink-0`}
                   >
                     <Sparkles className="w-5 h-5 text-white" />
                   </div>
@@ -393,7 +477,9 @@ export default function InsightsPage() {
                         {rec.priority}
                       </Badge>
                     </div>
-                    <p className="text-sm text-muted-foreground">{rec.description}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {rec.description}
+                    </p>
                   </div>
                   <Button size="sm" variant="outline">
                     Take Action
@@ -405,5 +491,5 @@ export default function InsightsPage() {
         </motion.div>
       </div>
     </DashboardLayout>
-  )
+  );
 }
